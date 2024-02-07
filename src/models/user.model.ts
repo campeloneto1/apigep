@@ -40,7 +40,20 @@ const User = connection.define('User', {
   }, {
     tableName: 'users',
     timestamps: true,
-    
+    defaultScope: {
+      attributes: {
+        exclude: ['password'],
+      },
+      include: ['perfil'],
+      order: [['nome', 'ASC']]
+    },
+    scopes: {
+      withPassword: {
+        attributes: {
+          include: ['password']
+        }
+      }
+    }
   });
 
   const options = {
@@ -55,5 +68,15 @@ const User = connection.define('User', {
      as: 'perfil',
      foreignKey: 'perfil_id'
    });
+
+   User.belongsTo(User, {
+    as: 'createdBy',
+    foreignKey: 'created_by'
+  });
+
+  User.belongsTo(User, {
+    as: 'updatedBy',
+    foreignKey: 'updated_by'
+  });
 
 export default User;

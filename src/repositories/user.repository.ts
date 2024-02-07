@@ -2,20 +2,15 @@ import UserModel from '../models/user.model';
 
 export const index = async () => {
     try{
-        return await UserModel.findAll({
-            include: ['perfil'],
-        });
+        return await UserModel.findAll();
     }catch (error){
         return error;
     }
-   
 }
 
 export const find = async (id:any) => {
     try{
-        return await UserModel.findByPk(id, {
-            include: ['perfil'],
-        });
+        return await UserModel.findByPk(id);
     }catch (error){
         return error;
     }

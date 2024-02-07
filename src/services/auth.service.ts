@@ -15,8 +15,6 @@ export const login = async (data:any) => {
         user: {}
     }
     if(response){
-        //@ts-ignore
-        response.password = '';
         json.user = response;
          //@ts-ignore
         var token = jwt.sign({ id: response.id }, JWT_SECRET, {
