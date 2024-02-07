@@ -21,7 +21,10 @@ export const login = async (data:any) => {
             expiresIn: 86400 // expira em 24 horas
           });
           json.token = token;
+          return json;
+    }else{
+        return false;
     }
-    return json;
+    
 }
 
