@@ -24,6 +24,17 @@ const Perfil = connection.define('Perfil', {
     tableName: 'perfis',
     timestamps: true,
   });
+
+  // (async () => {
+  //   await Perfil.findOrCreate({
+  //     where: { id: 1 },
+  //     defaults: {
+  //       nome: 'Administrador',
+  //       administrador: 1,
+  //       gestor: 1
+  //     }
+  //   });
+  // })();
   
     // Perfil.hasMany(connection.models.User, {
     //   as: 'users',
