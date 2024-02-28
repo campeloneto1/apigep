@@ -5,6 +5,8 @@ export const login = async (data:any) => {
     if(user){
         //@ts-ignore
         if(user.authenticate(data.password)){
+            //@ts-ignore
+           user.password = '';
            return user;
         }else{
             return false;

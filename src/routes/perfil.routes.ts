@@ -1,4 +1,4 @@
-import express, {Request, Response} from 'express';
+import express from 'express';
 import * as PerfilController from '../controllers/perfil.controller';
 import * as AuthMiddlewares from '../middlewares/auth.middleware';
 const router = express.Router();

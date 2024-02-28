@@ -36,7 +36,7 @@ const User = connection.define('User', {
       validate: {
         isNumeric: true
       }
-    }
+    },
   }, {
     tableName: 'users',
     timestamps: true,
@@ -64,21 +64,11 @@ const User = connection.define('User', {
 
   useBcrypt(User, options);
 
-  // (async () => {
-  //   await User.findOrCreate({
-  //     where: { id: 1 },
-  //     defaults: {
-  //       nome: 'Jose de Barros Campelo Neto',
-  //       cpf: '05906219471',
-  //       password: '05906219471',
-  //       perfil_id: 1
-  //     }
-  //   });
-  // })();
-
    User.belongsTo(Perfil, {
      as: 'perfil',
-     foreignKey: 'perfil_id'
+     foreignKey: 'perfil_id',
+     onDelete: 'SET NULL',
+     onUpdate: 'CASCADE'
    });
 
    User.belongsTo(User, {
@@ -90,7 +80,5 @@ const User = connection.define('User', {
     as: 'updatedBy',
     foreignKey: 'updated_by'
   });
-
-
 
 export default User;

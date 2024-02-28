@@ -2,7 +2,7 @@ import {DataTypes} from 'sequelize';
 import connection from '../connection';
 import User from './user.model';
 
-const Perfil:any = connection.define('Perfil', {
+const Status = connection.define('Status', {
     id: {
         type: DataTypes.BIGINT.UNSIGNED,
         autoIncrement: true,
@@ -14,22 +14,27 @@ const Perfil:any = connection.define('Perfil', {
       allowNull: false,
       unique: true
     },
-    administrador: {
+    em_andamento: {
         type: DataTypes.BOOLEAN,
     },
-    gestor: {
+    encaminhado: {
+        type: DataTypes.BOOLEAN,
+    },
+    finalizado: {
         type: DataTypes.BOOLEAN,
     },
   }, {
-    tableName: 'perfis',
+    tableName: 'status',
     timestamps: true,
   });
-  
-    // Perfil.hasMany(connection.models.User, {
-    //   as: 'users',
-    //   foreignKey: 'perfil_id'
-    // });
 
-   
+  Status.belongsTo(User, {
+    as: 'createdBy',
+    foreignKey: 'created_by'
+  });
 
-export default Perfil;
+  Status.belongsTo(User, {
+    as: 'updatedBy',
+    foreignKey: 'updated_by'
+  });
+export default Status;
