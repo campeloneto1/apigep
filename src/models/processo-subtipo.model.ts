@@ -18,6 +18,10 @@ const ProcessoSubtipo = connection.define('ProcessoSubtipo', {
 }, {
     tableName: 'processos_subtipos',
     timestamps: true,
+    defaultScope: {
+      include: ['processo_tipo'],
+      order: [['nome', 'ASC']]
+    },
   });
 
   ProcessoSubtipo.belongsTo(ProcessoTipo, {
@@ -29,12 +33,16 @@ const ProcessoSubtipo = connection.define('ProcessoSubtipo', {
 
   ProcessoSubtipo.belongsTo(User, {
     as: 'createdBy',
-    foreignKey: 'created_by'
+    foreignKey: 'created_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
   ProcessoSubtipo.belongsTo(User, {
     as: 'updatedBy',
-    foreignKey: 'updated_by'
+    foreignKey: 'updated_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
 export default ProcessoSubtipo;

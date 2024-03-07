@@ -58,12 +58,16 @@ const Processo = connection.define('Processo', {
 
   Processo.belongsTo(User, {
     as: 'createdBy',
-    foreignKey: 'created_by'
+    foreignKey: 'created_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
   Processo.belongsTo(User, {
     as: 'updatedBy',
-    foreignKey: 'updated_by'
+    foreignKey: 'updated_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
 export default Processo;

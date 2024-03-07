@@ -30,11 +30,15 @@ const Status = connection.define('Status', {
 
   Status.belongsTo(User, {
     as: 'createdBy',
-    foreignKey: 'created_by'
+    foreignKey: 'created_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
   Status.belongsTo(User, {
     as: 'updatedBy',
-    foreignKey: 'updated_by'
+    foreignKey: 'updated_by',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 export default Status;
